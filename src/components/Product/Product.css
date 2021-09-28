@@ -1,0 +1,16 @@
+.product{
+    display: grid;
+    grid-template-columns: 2fr 4fr;
+    border-bottom: 1px solid gray;
+    margin-right: 5px;
+    padding: 5px;
+}
+.product-name a{
+    text-decoration: none;
+    color: blue;
+    font-weight: 600;
+}
+.beGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
