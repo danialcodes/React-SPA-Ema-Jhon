@@ -7,7 +7,7 @@ const Purchase = (props) => {
         <div className='purchase'>
             <h4>${price}</h4>
             <p>only {stock} left in stock- order soon</p>
-            <button onClick={()=>updateCart(props.product)}><i className="fas fa-shopping-cart"></i>add to cart</button>
+            <button className="purchase-button" onClick={()=>updateCart(props.product)}><i className="fas fa-shopping-cart"></i>add to cart</button>
         </div>
     );
 };

@@ -2,9 +2,26 @@ import React from 'react';
 import "./Order.css"
 const Order = (props) => {
     const {cart} = props;
-    const calTol = (pre,cur,check)=>pre+cur[check];
-    const items = cart.reduce((pre,cur)=>calTol(pre,cur,"price"),0);
-    let shipping= cart.reduce((pre,cur)=>calTol(pre,cur,"shipping"),0);
+    
+    // console.log(cart);
+    let items = 0;
+    let shipping =0;
+    let tItem = 0;
+    cart.forEach(e => {
+        const quantity = e.quantity?e.quantity:1;
+        items+=(e.price*quantity);
+        shipping+= (e.shipping*quantity);
+        tItem+=quantity;
+        
+    });
+    // const calTol = (pre,cur,check)=>{
+    //     console.log(cur[check]);
+    //         const t = pre+ (cur[check] * (cur.quantity?cur.quantity:1));
+    //     return t;
+    // }
+    
+    // const items = cart.reduce((pre,cur)=>calTol(pre,cur,"price"),0);
+    // let shipping= cart.reduce((pre,cur)=>calTol(pre,cur,"shipping"),0);
     
     let btax=items+shipping;
     let tax=btax*.20;
@@ -13,7 +30,7 @@ const Order = (props) => {
         <div className="cart">
             <div style={{ textAlign: "center" }}>
                 <h1>Order Summary</h1>
-                <h3>Item ordered: {cart.length}</h3>
+                <h3>Item ordered: {tItem}</h3>
             </div>
             <div>
                 <div  className="cost">
