@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import "./Features.css"
 // import { useState } from 'react/cjs/react.development';
-import Rating from 'react-rating';
+// import Rating from 'react-rating';
 const Features = (props) => {
     const { star, features } = props;
     const rating = []
