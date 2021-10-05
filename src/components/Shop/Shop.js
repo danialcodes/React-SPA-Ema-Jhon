@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react/cjs/react.development';
+
 // import useProducts from '../../hooks/useProducts';
 import { addToDb, getStoredCart } from '../../utilities/fakedb';
 import Order from '../Order/Order';
