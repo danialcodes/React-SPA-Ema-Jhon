@@ -11,7 +11,7 @@ const Shop = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('/products.JSON')
+        fetch('/products.json')
             .then(res => res.json())
             .then(data => {
                 setSrcPdt(data);
@@ -20,8 +20,11 @@ const Shop = () => {
 
 
     // console.log(products);
+    const [cart, setCart] = useState([]);
     useEffect(() => {
+        // console.log("Inside effect");
         const cart = getStoredCart();
+        // console.log("IE: Cart: ",cart);
         const cartItem=[];
         if (products.length) {
             
@@ -29,26 +32,36 @@ const Shop = () => {
                 const item = products.find(product => product.key === key);
                 const quantity = cart[key];
                 item.quantity = quantity;
-                cartItem.push(item)
+                cartItem.push(item);
             }
             setCart(cartItem);
         }
 
     }, [products]);
-
-    const [cart, setCart] = useState([]);
     const updateCart = (product) => {
         const newCart = [];
-        cart.forEach(e => {
+        if(cart.length){
+            cart.forEach(e => {
             if(e.key!==product.key){
-                newCart.push(e)
+                newCart.push(e);
             }
             else{
                 e.quantity+=1;
                 newCart.push(e);
             }
         });
+        }
+        
+        else{
+            products.forEach(e=>{
+                if(e.key===product.key){
+                    newCart.push(e);
+                }
+            });
+        }
+        
         setCart(newCart);
+        // console.log("From function: ",cart);
         addToDb(product.key);
     }
     const [srcPdt,setSrcPdt]=useState([]);

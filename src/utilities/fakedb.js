@@ -26,7 +26,7 @@ const updateDb = cart => {
 const removeFromDb = id => {
   const exists = getDb();
   if (!exists) {
-
+    console.log("Invalid Key!!");
   }
   else {
     const shopping_cart = JSON.parse(exists);

@@ -2,7 +2,7 @@ import React from 'react';
 import "./Order.css"
 const Order = (props) => {
     const { cart } = props;
-
+    // console.log("From Order: ",cart);
     // console.log(cart);
     let items = 0;
     let shipping = 0;

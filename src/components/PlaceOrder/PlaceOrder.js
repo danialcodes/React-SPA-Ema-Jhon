@@ -3,7 +3,7 @@ import React from 'react';
 const PlaceOrder = () => {
     return (
         <div>
-            <h1>Place It</h1>
+            <h1 className="text-center">Order Placed</h1>
         </div>
     );
 };
