@@ -1,24 +1,35 @@
 import { useEffect, useState } from "react"
 import { getStoredCart } from "../utilities/fakedb";
+const axios = require('axios').default;
 
 
-const useCart = (products)=>{
-    const [cart,setCart] = useState([]);
+const useCart = () => {
+    const [cart, setCart] = useState([]);
     useEffect(() => {
         const cart = getStoredCart();
-        const cartItem=[];
-        if (products.length) {
-            
-            for (const key in cart) {
-                const item = products.find(product => product.key === key);
-                const quantity = cart[key];
-                item.quantity = quantity;
-                cartItem.push(item)
-            }
-            setCart(cartItem);
-        }
+        const cartItem = [];
+        const keys = Object.keys(cart);
+        console.log(keys);
+        axios.post('http://localhost:5000/products/bykeys', keys)
+            .then(res => {
+                console.log("Inside post");
+                const products = res.data;
+                if (products.length) {
 
-    }, [products]);
-    return [cart,setCart];
+                    for (const key in cart) {
+                        const item = products.find(product => product.key === key);
+                        const quantity = cart[key];
+                        item.quantity = quantity;
+                        cartItem.push(item)
+                    }
+                    setCart(cartItem);
+                }
+            })
+            .catch(err => console.log(err))
+
+
+
+    }, []);
+    return [cart, setCart];
 }
 export default useCart;

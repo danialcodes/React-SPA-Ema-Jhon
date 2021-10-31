@@ -2,7 +2,6 @@ import React from 'react';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 // import useFirebase from '../../hooks/useFirebase';
-
 const Login = () => {
     const { sendOtp, signInWithGoogle, signInWithGithub } = useAuth();
     const location = useLocation();

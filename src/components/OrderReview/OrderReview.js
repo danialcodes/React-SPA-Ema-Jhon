@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 const OrderReview = () => {
     const [products] = useProducts();
-    const [cart, setCart] = useCart(products);
+    const [cart, setCart] = useCart();
     // const history = useHistory();
     const removeItem = (key) => {
         const newCart = cart.filter(product => product.key !== key);
