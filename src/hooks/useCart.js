@@ -10,7 +10,7 @@ const useCart = () => {
         const cartItem = [];
         const keys = Object.keys(cart);
         console.log(keys);
-        axios.post('http://localhost:5000/products/bykeys', keys)
+        axios.post('https://possessed-spell-91387.herokuapp.com/products/bykeys', keys)
             .then(res => {
                 console.log("Inside post");
                 const products = res.data;

@@ -10,7 +10,7 @@ const Shipping = () => {
     const onSubmit = data => {
         const savedCart = getStoredCart();
         data.order = savedCart;
-        axios.post('http://localhost:5000/orders', data)
+        axios.post('https://possessed-spell-91387.herokuapp.com/orders', data)
             .then(res => {
                 if(res.data.insertedId){
                     console.log(res.data);

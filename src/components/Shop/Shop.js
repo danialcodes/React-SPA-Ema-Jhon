@@ -14,7 +14,7 @@ const Shop = () => {
     const [page, setPage] = useState(1);
     const size = 10;
     useEffect(() => {
-        fetch(`http://localhost:5000/products?page=${page}&&size=${size}`)
+        fetch(`https://possessed-spell-91387.herokuapp.com/products?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setSrcPdt(data.products);
