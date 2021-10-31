@@ -6,7 +6,7 @@ import Order from '../Order/Order';
 import { clearTheCart, deleteFromDb } from '../../utilities/fakedb';
 import { Link } from 'react-router-dom';
 // import { Link} from 'react-router-dom';
-// import { useHistory} from 'react-router';
+import { useHistory} from 'react-router-dom';
 
 const OrderReview = () => {
     const [products] = useProducts();
@@ -18,9 +18,11 @@ const OrderReview = () => {
         deleteFromDb(key);
     }
     const placeOrder = () => {
-        // history.push("/placeorder");
-        setCart([]);
-        clearTheCart();
+
+        // history.push("/shipping");
+        // setCart([]);
+        // clearTheCart();
+        console.log("Place order");
 
     }
     return (
