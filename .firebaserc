@@ -1,5 +1,15 @@
 {
   "projects": {
-    "default": "ema-jhon-e1881"
+    "default": "ema-jhon-e1881",
+    "build": "ema-jhon-e1881"
+  },
+  "targets": {
+    "ema-jhon-e1881": {
+      "hosting": {
+        "app": [
+          "ema-jhon-e1881"
+        ]
+      }
+    }
   }
 }
