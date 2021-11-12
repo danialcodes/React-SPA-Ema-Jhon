@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, GithubAuthProvider, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, RecaptchaVerifier, signInWithPhoneNumber } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, GithubAuthProvider, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, RecaptchaVerifier, signInWithPhoneNumber, getIdToken } from "firebase/auth";
 import { useEffect } from "react";
 import initializeAuthentication from "../Firebase/firebase-init";
 initializeAuthentication();
@@ -14,6 +14,9 @@ const useFirebase = () => {
             if (user) {
                 // User is signed in, see docs for a list of available properties
                 // https://firebase.google.com/docs/reference/js/firebase.User
+                getIdToken(user)
+                .then(idToken=>localStorage.setItem("idToken",idToken));
+
                 setUser(user);
                 // ...
             }
@@ -35,14 +38,14 @@ const useFirebase = () => {
                 // reCAPTCHA solved, allow signInWithPhoneNumber.
                 alert("Recapta Solved");
                 sendOtp();
-                
+
             }
         }, auth);
     }
     const sendOtp = (e) => {
         e.preventDefault();
         setUpRecapta();
-        const phoneNumber = "+88"+ prompt("Enter Phone No: "); 
+        const phoneNumber = "+88" + prompt("Enter Phone No: ");
         alert(phoneNumber);
         // phoneNumber = "+88"+phoneNumber;
         const appVerifier = window.recaptchaVerifier;
@@ -55,7 +58,7 @@ const useFirebase = () => {
                 // window.confirmationResult = confirmationResult;
                 // alert("OTP Sent");
                 const code = prompt("Enter OTP: ");
-                submitCode(confirmationResult,code);
+                submitCode(confirmationResult, code);
             }).catch((error) => {
                 // Error; SMS not sent
                 // ...
@@ -63,7 +66,7 @@ const useFirebase = () => {
             });
 
     }
-    const submitCode = (confirmationResult,otp) => {
+    const submitCode = (confirmationResult, otp) => {
         confirmationResult.confirm(otp).then((result) => {
             // User signed in successfully.
             // const user = result.user;

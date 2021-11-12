@@ -13,8 +13,10 @@ const Shop = () => {
     const [pageCount, setPageCount] = useState(1);
     const [page, setPage] = useState(1);
     const size = 10;
+    const liveUrl = "https://possessed-spell-91387.herokuapp.com";
+    const localUrl = "http://localhost:5000";
     useEffect(() => {
-        fetch(`https://possessed-spell-91387.herokuapp.com/products?page=${page}&&size=${size}`)
+        fetch(`${localUrl}/products?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setSrcPdt(data.products);
@@ -90,9 +92,9 @@ const Shop = () => {
                     }
                     <div className="pagination">
                         {
-                    [...Array(pageCount).keys()].map(number => <button onClick={()=>{
-                            setPage(number+1)
-                    }} className={(number+1)===page?"selected":""}>{number+1}</button> )
+                            [...Array(pageCount).keys()].map(number => <button onClick={() => {
+                                setPage(number + 1)
+                            }} className={(number + 1) === page ? "selected" : ""}>{number + 1}</button>)
                         }
                     </div>
                 </div>
