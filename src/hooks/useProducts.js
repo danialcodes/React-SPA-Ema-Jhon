@@ -6,7 +6,7 @@ const useProducts = () => {
     const liveUrl = "https://possessed-spell-91387.herokuapp.com";
     const localUrl = "http://localhost:5000";
     useEffect(() => {
-        fetch(`${localUrl}/products`)
+        fetch(`${liveUrl}/products`)
             .then(res => res.json())
             .then(data => setProducts(data.products))
     }, []);

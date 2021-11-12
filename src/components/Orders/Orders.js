@@ -8,10 +8,10 @@ const Orders = () => {
     const [orders, setOrders] = useState([]);
     const liveUrl = "https://possessed-spell-91387.herokuapp.com";
     const localUrl = "http://localhost:5000";
-    axios.defaults.headers.common['Authorization'] = `Barer ${localStorage.getItem('idToken')}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('idToken')}`;
     const history = useHistory();
     useEffect(() => {
-        axios.get(`${localUrl}/orders?email=${user.email}`)
+        axios.get(`${liveUrl}/orders?email=${user.email}`)
             .then(res => {
                 console.log(res);
                 if (res.status === 200) {
@@ -31,7 +31,21 @@ const Orders = () => {
             }
             <ul>
                 {
-                    orders.map(order => <li key={order._id}>{order.name} : {order.email}</li>)
+                    orders.map(order => {
+                        const list = Object.entries(order.order);
+                        return (
+                            <li key={order._id}>
+                                {order.email} : <ul>
+                                    {
+                                        list.map(item => {
+                                            return (
+                                                <li>{item[0]} {item[1]}</li>
+                                            )
+                                        })
+                                    }
+                                </ul>
+                            </li>)
+                    })
                 }
             </ul>
         </div>

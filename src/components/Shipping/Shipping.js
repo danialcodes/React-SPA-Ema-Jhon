@@ -17,7 +17,7 @@ const Shipping = () => {
 
         const liveUrl = "https://possessed-spell-91387.herokuapp.com";
         const localUrl = "http://localhost:5000";
-        axios.post(`${localUrl}/orders`, data)
+        axios.post(`${liveUrl}/orders`, data)
             .then(res => {
                 if (res.data.insertedId) {
                     console.log(res.data);

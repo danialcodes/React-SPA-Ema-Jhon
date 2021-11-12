@@ -16,7 +16,7 @@ const Shop = () => {
     const liveUrl = "https://possessed-spell-91387.herokuapp.com";
     const localUrl = "http://localhost:5000";
     useEffect(() => {
-        fetch(`${localUrl}/products?page=${page}&&size=${size}`)
+        fetch(`${liveUrl}/products?page=${page}&&size=${size}`)
             .then(res => res.json())
             .then(data => {
                 setSrcPdt(data.products);
